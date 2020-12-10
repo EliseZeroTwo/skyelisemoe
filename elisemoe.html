@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>elise.moe</title>
+        <meta name="description" content="UwU">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --gr-trans: linear-gradient(69deg, rgba(85,205,252,1) 0%, rgba(247,168,184,1) 14%, rgba(247,168,184,1) 33%, rgba(255,255,255,1) 48%, rgba(247,168,184,1) 63%, rgba(248,176,191,1) 77%, rgba(247,168,184,1) 80%, rgba(85,205,252,1) 100%);
+                --gr-les: linear-gradient(69deg, rgba(214,41,0,1) 0%, rgba(255,155,85,1) 35%, rgba(255,255,255,1) 50%, rgba(212,97,166,1) 65%, rgba(165,0,98,1) 100%);
+            }
+
+            html, body {
+                padding: 0;
+                margin: 0;
+                min-height: 100%;
+                background-color: #32292f;
+                background-attachment: fixed;
+            }
+
+            .bubble{
+                z-index: 0;
+            }
+            .textDiv {
+                display: flex;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                justify-content: center;
+                align-items: center;
+                z-index: 1;
+            }
+            #bubbleContainer {
+                overflow: hidden;
+                position: fixed;
+                height: 100%;
+                width: 100%;
+                z-index: 0;
+            }
+            #bubbleContainer div {
+                position: fixed;
+                border-radius: 1000px;
+            }
+        </style>
+        <script>
+            function calculateColor(yPos)
+            {
+                var oneFifth = window.innerHeight / 5;
+
+                if (yPos < oneFifth || yPos >= oneFifth * 4)
+                    return '#55CDFC'; // Blue
+                else if (yPos < oneFifth * 2 || yPos >= oneFifth * 3)
+                    return '#FFAABB';
+                else
+                    return '#FFFFFF';
+            }
+
+            function Bubble(bubbleNumber)
+            {
+                this.element = document.createElement('div');
+                this.element.setAttribute('class', 'bubble');
+                this.init();
+                document.getElementById('bubbleContainer').appendChild(this.element);
+                
+            }
+
+            Bubble.prototype.init = function()
+            {
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.xVelocity = Math.random() * 2 - 1;
+                this.yVelocity = Math.random() * 2 - 1;
+                this.diameter = Math.floor(Math.random() * 120) + 20;
+                this.element.style.width = this.element.style.height = `${this.diameter}px`;
+                this.ticker = -1;
+                this.glow = Math.floor(Math.random()*10) + 5;
+                this.element.style.backgroundColor = calculateColor(this.y);
+                this.element.style.boxShadow= `0 0 ${this.glow}px ${this.element.style.backgroundColor}`;
+                this.element.style.top = `${Math.floor(this.x)}px`;
+                this.element.style.left = `${Math.floor(this.y)}px`;
+                this.element.style.opacity = '0';
+            }
+
+            Bubble.prototype.tick = function()
+            {
+                if(this.x + this.diameter < 0 || this.x > window.innerWidth || this.y + this.diameter < 0 || this.y - this.diameter > window.innerHeight)
+                    this.init();
+                else
+                {
+                    if (this.ticker++ <= 30)
+                        this.element.style.opacity = this.ticker / 30;
+
+                    this.x += this.xVelocity;
+                    this.y += this.yVelocity;
+
+                    this.element.style.backgroundColor = calculateColor(this.y);
+                    this.element.style.boxShadow= `0 0 ${this.glow}px ${this.element.style.backgroundColor}`;
+                    this.element.style.top = `${Math.floor(this.y)}px`;
+                    this.element.style.left = `${Math.floor(this.x)}px`;
+                }
+            }
+
+            var bubbles = [];
+            var bubbleCount = Math.floor(window.innerHeight*window.innerWidth/20000);
+            window.onload = function()
+            {
+                var bubbleContainer = document.getElementById('bubbleContainer');
+
+                for (var x = 0; x < bubbleCount; x++)
+                    bubbles.push(new Bubble(x));
+                
+                window.clearInterval(this.interval);
+                this.interval = window.setInterval(() => { 
+                    for (var x = 0; x < bubbles.length; x++)
+                        bubbles[x].tick();
+                }, 10);
+            }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id="bubbleContainer">
+            <div class="textDiv">
+                <h1 style="font-family: 'Chewy', cursive;background: var(--gr-les);background-clip: text;-webkit-background-clip: text;-webkit-text-fill-color: transparent;font-size: 72px;">UwU</h1>
+            </div>
+        </div>
+        
+        <script src="" async defer></script>
+    </body>
+</html>

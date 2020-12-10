@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+:root {
+    /* General Color Definitions */
+    --clr-cherry-blsm-pink: #ffaabb;
+    --clr-slate-gray: #a9a9a9;
+    --clr-black-coffee: #32292f;
+    --clr-celeste: #9cf6f6;
+
+    /* Stats Color Definitions */
+    --clr-health-strength: #ef5350;
+    --clr-defense: #66bb6a;
+    --clr-crit: #9fa8da;
+    --clr-atk-speed: #f7f778;
+    --clr-intel: #4fc3f7;
+    --clr-sc-chance: #1cd2d2;
+    --clr-magic-find: #3bdddd;
+    --clr-pet-luck: #fd64de;
+
+    /* Gradient stuff */
+    --gr-bg-trans: rgb(85,205,252);
+    --gr-trans: linear-gradient(69deg, rgba(85,205,252,1) 0%, rgba(247,168,184,1) 14%, rgba(247,168,184,1) 33%, rgba(255,255,255,1) 48%, rgba(247,168,184,1) 63%, rgba(248,176,191,1) 77%, rgba(247,168,184,1) 80%, rgba(85,205,252,1) 100%);
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    color: var(--clr-slate-gray);
+    background-color: var(--clr-black-coffee);
+    margin: 0;
+    padding-top: 42px;
+}
+
+a {
+    color: var(--clr-celeste);
+    text-decoration: none;
+}
+
+select {
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance: none;
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--clr-slate-gray);
+    border-style: hidden;
+    border-radius: 50px;
+    padding: 6px;
+}
+
+p {
+    display: inline-block;
+}
+
+.navbar {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 42px;
+    transition: top 0.1s;
+    background-color: var(--clr-black-coffee);
+    color: var(--clr-celeste);
+    border-bottom: 1px solid var(--clr-celeste);
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.profile-meta {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.extra-meta {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.extra-meta img {
+    height: 48px;
+}
+
+.search {
+    color: var(--clr-slate-gray);
+    background-color: rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border-style: hidden;
+    border-radius: 50px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.container {
+    display: flex;
+    box-sizing: border-box;
+    width: 90%;
+    flex-direction: column;
+    justify-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.stats-data {
+    padding-right: 12px;
+    padding-bottom: 12px;
+}
+
+.stats-data p {
+    margin-bottom: 0px;
+}
+
+.stats-data i {
+    padding-right: 5px;
+}
+
+.stats-data strong {
+    padding-right: 5px;
+}
+
+.stats-other {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.stats-skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.stats-skills-skill {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    border-style: none;
+    border-radius: 6px;
+    background-color: var(--clr-cherry-blsm-pink);
+    padding: 6px;
+    margin: 6px;
+}
+
+.cube {   
+    position: relative;
+    width: 64px;
+    height: 64px;
+    transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transform: rotateX(-22deg) rotateY(-38deg) rotateZ(0deg);
+    -moz-transform: rotateX(-22deg) rotateY(-38deg) rotateZ(0deg);
+    -webkit-transform: rotateX(-22deg) rotateY(-38deg) rotateZ(0deg);
+}
+
+.cube > div {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    float: left;
+    overflow: hidden;
+    opacity: 0.85;
+}
+
+.cube.top-square {
+    transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(6px);
+    -moz-transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(6px);
+    -webkit-transform: rotatex(90deg) translateX(10px) translateY(0px) translateZ(6px);
+    background-image: url("/blocks/stonebrick.png");
+}
+.cube.right-square {
+    transform: rotateY(90deg) translateX(0px) translateY(0px) translateZ(16px);
+    -moz-transform: rotateY(90deg) translateX(0px) translateY(0px) translateZ(16px);
+    -webkit-transform: rotateY(90deg) translateX(0px) translateY(10px) translateZ(26px);
+    background-image: url("/blocks/stonebrick.png");
+}
+.cube.left-square {
+    transform: translateX(0px) translateY(0px) translateZ(16px);
+    -moz-transform: translateX(0px) translateY(0px) translateZ(16px);
+    -webkit-transform: translateX(10px) translateY(10px) translateZ(16px);
+    background-image: url("/blocks/stonebrick.png");
+}
+
+.stats-skills-skill-data {
+    flex-grow: 1;
+}
+
+.stats-skills-skill-meta {
+    display: flex;
+    justify-content: space-between;
+    color: var(--clr-black-coffee);
+}
+
+.stats-skills-skill-xp {
+    color: var(--clr-black-coffee);
+    font-size: small;
+    text-align: center;
+}
+
+progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 14px;
+    border: 1px solid var(--clr-black-coffee);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
+
+progress::-webkit-progress-bar {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--clr-black-coffee);
+    border-style: none;
+    border-radius: 3px;
+}
+
+progress::-moz-progress-bar {
+    background-color: var(--clr-black-coffee);
+    border-style: none;
+    border-radius: 3px;
+}
