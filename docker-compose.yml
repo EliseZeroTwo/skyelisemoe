@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  skyelisemoe:
+    image: skyelisemoe
+    ports: 
+      - 0.0.0.0:80:80

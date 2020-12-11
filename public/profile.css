@@ -204,6 +204,14 @@ p {
     text-align: center;
 }
 
+.home-search {
+    border: none;
+    border-radius: 6px;
+    min-width: 20%;
+    min-height: 20%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
 progress {
     -webkit-appearance: none;
     -moz-appearance: none;

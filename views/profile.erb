@@ -24,10 +24,14 @@
         </div>
         <div class="container">
             <div class="profile-meta">
-                <h2>USERNAME on <select><option value="PROFILE">PROFILE</option></select></h2>
+                <h2><%= @username %> on <select>
+                    <% for @prf in @profiles %>
+                        <option <%= @prf[1] == @profile ? 'selected=""' : '' %> value="<%= @prf[0] %>"><%= @prf[0] %></option>
+                    <% end %>
+                </select></h2>
                 <div class="extra-meta">
                     <img src="/Fairy_Soul.png">
-                    <p><sup>VALUE</sup><strong>/</strong>209</p>
+                    <p><sup><%= @fairySoulCount %></sup><strong>/</strong>209</p>
                 </div>
             </div>
             <div class="stats-container">
@@ -45,30 +49,115 @@
                     <p><i class="fas fa-spa" style="color: var(--clr-pet-luck);"></i><strong style="color: var(--clr-pet-luck);">Pet Luck</strong>VALUE</p><br>
                 </div>
                 <div class="stats-other">
-                    <div class="stats-skills">
-                        <div class="stats-skills-skill">
-                            <i class="icon-minecraft icon-minecraft-spawn-egg-skeleton" style="margin-right: 6px;"></i>
-                            <div class="stats-skills-skill-data">
-                                <div class="stats-skills-skill-meta">
-                                    <label for="taming-progress">Taming <strong>18</strong></label>
-                                    <span>14%</span>
+                    <% if @skills.empty? %>
+                        <div class="stats-skills">
+                            <div class="stats-skills-skill">
+                                <i class="icon-minecraft icon-minecraft-barrier" style="margin-right: 6px;"></i>
+                                <div class="stats-skills-skill-data">
+                                    <div class="stats-skills-skill-meta">
+                                        <label>Stats API Disabled!</label>
+                                    </div>
+                                    <div class="stats-skills-skill-xp">If this is your profile, enable them.</div>
                                 </div>
-                                <progress id="taming-progress" value="14" max="100"></progress><br>
-                                <div class="stats-skills-skill-xp">14,951<strong> / 100,000 XP</strong></div>
+                            </div>
+                    <% else %>
+                        <div class="stats-skills">
+                            <div class="stats-skills-skill">
+                                <i class="icon-minecraft icon-minecraft-spawn-egg-skeleton" style="margin-right: 6px;"></i>
+                                <div class="stats-skills-skill-data">
+                                    <div class="stats-skills-skill-meta">
+                                        <label for="<%= @skills['alchemy'][:name] %>-progress"><%= @skills['alchemy'][:name].capitalize %> <strong><%= @skills['alchemy'][:level] %></strong></label>
+                                        <span><%= ((@skills['alchemy'][:xp].to_f/@skills['alchemy'][:neededXp].to_f) * 100.0).to_i %>%</span>
+                                    </div>
+                                    <progress id="alchemy-progress" value="<%= ((@skills['alchemy'][:xp].to_f/@skills['alchemy'][:neededXp].to_f) * 100.0).to_i %>" max="100"></progress><br>
+                                    <div class="stats-skills-skill-xp"><%= @skills['alchemy'][:xp] %><strong> / <%= @skills['alchemy'][:neededXp] %> XP</strong></div>
+                                </div>
+                            </div>
+                            <div class="stats-skills-skill">
+                                <i class="icon-minecraft icon-minecraft-golden-hoe" style="margin-right: 6px;"></i>
+                                <div class="stats-skills-skill-data">
+                                    <div class="stats-skills-skill-meta">
+                                        <label for="<%= @skills['farming'][:name] %>-progress"><%= @skills['farming'][:name].capitalize %> <strong><%= @skills['farming'][:level] %></strong></label>
+                                        <span><%= ((@skills['farming'][:xp].to_f/@skills['farming'][:neededXp].to_f) * 100.0).to_i %>%</span>
+                                    </div>
+                                    <progress id="farming-progress" value="<%= ((@skills['farming'][:xp].to_f/@skills['farming'][:neededXp].to_f) * 100.0).to_i %>" max="100"></progress><br>
+                                    <div class="stats-skills-skill-xp"><%= @skills['farming'][:xp] %><strong> / <%= @skills['farming'][:neededXp] %> XP</strong></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="stats-skills-skill">
-                            <i class="icon-minecraft icon-minecraft-golden-hoe" style="margin-right: 6px;"></i>
-                            <div class="stats-skills-skill-data">
-                                <div class="stats-skills-skill-meta">
-                                    <label for="farming-progress">Farming <strong>20</strong></label>
-                                    <span>27%</span>
+                        <div class="stats-skills">
+                            <div class="stats-skills-skill">
+                                <i class="icon-minecraft icon-minecraft-stone-pickaxe" style="margin-right: 6px;"></i>
+                                <div class="stats-skills-skill-data">
+                                    <div class="stats-skills-skill-meta">
+                                        <label for="<%= @skills['mining'][:name] %>-progress"><%= @skills['mining'][:name].capitalize %> <strong><%= @skills['mining'][:level] %></strong></label>
+                                        <span><%= ((@skills['mining'][:xp].to_f/@skills['mining'][:neededXp].to_f) * 100.0).to_i %>%</span>
+                                    </div>
+                                    <progress id="mining-progress" value="<%= ((@skills['mining'][:xp].to_f/@skills['mining'][:neededXp].to_f) * 100.0).to_i %>" max="100"></progress><br>
+                                    <div class="stats-skills-skill-xp"><%= @skills['mining'][:xp] %><strong> / <%= @skills['mining'][:neededXp] %> XP</strong></div>
                                 </div>
-                                <progress id="farming-progress" value="27" max="100"></progress><br>
-                                <div class="stats-skills-skill-xp">83,527<strong> / 300,000 XP</strong></div>
+                            </div>
+                            <div class="stats-skills-skill">
+                                <i class="icon-minecraft icon-minecraft-stone-sword" style="margin-right: 6px;"></i>
+                                <div class="stats-skills-skill-data">
+                                    <div class="stats-skills-skill-meta">
+                                        <label for="<%= @skills['combat'][:name] %>-progress"><%= @skills['combat'][:name].capitalize %> <strong><%= @skills['combat'][:level] %></strong></label>
+                                        <span><%= ((@skills['combat'][:xp].to_f/@skills['combat'][:neededXp].to_f) * 100.0).to_i %>%</span>
+                                    </div>
+                                    <progress id="combat-progress" value="<%= ((@skills['combat'][:xp].to_f/@skills['combat'][:neededXp].to_f) * 100.0).to_i %>" max="100"></progress><br>
+                                    <div class="stats-skills-skill-xp"><%= @skills['combat'][:xp] %><strong> / <%= @skills['combat'][:neededXp] %> XP</strong></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="stats-skills">
+                            <div class="stats-skills-skill">
+                                <i class="icon-minecraft icon-minecraft-dark-oak-sapling" style="margin-right: 6px;"></i>
+                                <div class="stats-skills-skill-data">
+                                    <div class="stats-skills-skill-meta">
+                                        <label for="<%= @skills['foraging'][:name] %>-progress"><%= @skills['foraging'][:name].capitalize %> <strong><%= @skills['foraging'][:level] %></strong></label>
+                                        <span><%= ((@skills['foraging'][:xp].to_f/@skills['foraging'][:neededXp].to_f) * 100.0).to_i %>%</span>
+                                    </div>
+                                    <progress id="foraging-progress" value="<%= ((@skills['foraging'][:xp].to_f/@skills['foraging'][:neededXp].to_f) * 100.0).to_i %>" max="100"></progress><br>
+                                    <div class="stats-skills-skill-xp"><%= @skills['foraging'][:xp] %><strong> / <%= @skills['foraging'][:neededXp] %> XP</strong></div>
+                                </div>
+                            </div>
+                            <div class="stats-skills-skill">
+                                <i class="icon-minecraft icon-minecraft-fishing-rod" style="margin-right: 6px;"></i>
+                                <div class="stats-skills-skill-data">
+                                    <div class="stats-skills-skill-meta">
+                                        <label for="<%= @skills['fishing'][:name] %>-progress"><%= @skills['fishing'][:name].capitalize %> <strong><%= @skills['fishing'][:level] %></strong></label>
+                                        <span><%= ((@skills['fishing'][:xp].to_f/@skills['fishing'][:neededXp].to_f) * 100.0).to_i %>%</span>
+                                    </div>
+                                    <progress id="fishing-progress" value="<%= ((@skills['fishing'][:xp].to_f/@skills['fishing'][:neededXp].to_f) * 100.0).to_i %>" max="100"></progress><br>
+                                    <div class="stats-skills-skill-xp"><%= @skills['fishing'][:xp] %><strong> / <%= @skills['fishing'][:neededXp] %> XP</strong></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stats-skills">
+                            <div class="stats-skills-skill">
+                                <i class="icon-minecraft icon-minecraft-enchanted-book" style="margin-right: 6px;"></i>
+                                <div class="stats-skills-skill-data">
+                                    <div class="stats-skills-skill-meta">
+                                        <label for="<%= @skills['enchanting'][:name] %>-progress"><%= @skills['enchanting'][:name].capitalize %> <strong><%= @skills['enchanting'][:level] %></strong></label>
+                                        <span><%= ((@skills['enchanting'][:xp].to_f/@skills['enchanting'][:neededXp].to_f) * 100.0).to_i %>%</span>
+                                    </div>
+                                    <progress id="enchanting-progress" value="<%= ((@skills['enchanting'][:xp].to_f/@skills['enchanting'][:neededXp].to_f) * 100.0).to_i %>" max="100"></progress><br>
+                                    <div class="stats-skills-skill-xp"><%= @skills['enchanting'][:xp] %><strong> / <%= @skills['enchanting'][:neededXp] %> XP</strong></div>
+                                </div>
+                            </div>
+                            <div class="stats-skills-skill">
+                                <i class="icon-minecraft icon-minecraft-brewing-stand" style="margin-right: 6px;"></i>
+                                <div class="stats-skills-skill-data">
+                                    <div class="stats-skills-skill-meta">
+                                        <label for="<%= @skills['alchemy'][:name] %>-progress"><%= @skills['alchemy'][:name].capitalize %> <strong><%= @skills['alchemy'][:level] %></strong></label>
+                                        <span><%= ((@skills['alchemy'][:xp].to_f/@skills['alchemy'][:neededXp].to_f) * 100.0).to_i %>%</span>
+                                    </div>
+                                    <progress id="alchemy-progress" value="<%= ((@skills['alchemy'][:xp].to_f/@skills['alchemy'][:neededXp].to_f) * 100.0).to_i %>" max="100"></progress><br>
+                                    <div class="stats-skills-skill-xp"><%= @skills['alchemy'][:xp] %><strong> / <%= @skills['alchemy'][:neededXp] %> XP</strong></div>
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
                 </div>
             </div>
         </div>
