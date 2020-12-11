@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="/icons.css">
         <link rel="stylesheet" href="/profile.css">
         <script src="https://kit.fontawesome.com/b7a5478dfd.js" crossorigin="anonymous"></script>
+        <script src="/load.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -20,13 +21,16 @@
         <![endif]-->
         <div class="navbar">
             <a href="https://sky.elise.moe/">sky.elise.moe</a>
-            <input class="search" placeholder="Username" type="text">
+            <form>
+                <input class="search" placeholder="Username" type="text">
+                <input type="submit" style="display: none;"/>
+            </form>
         </div>
         <div class="container">
             <div class="profile-meta">
                 <h2><%= @username %> on <select>
                     <% for @prf in @profiles %>
-                        <option <%= @prf[1] == @profile ? 'selected=""' : '' %> value="<%= @prf[0] %>"><%= @prf[0] %></option>
+                        <option <%= @prf[1] == @profile ? 'selected=""' : '' %> value="<%= @prf[0] %>" onclick="gotoProfile('<%= @username %>', '<%= @prf[0] %>')"><%= @prf[0] %></option>
                     <% end %>
                 </select></h2>
                 <div class="extra-meta">

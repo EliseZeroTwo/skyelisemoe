@@ -26,7 +26,7 @@ end
 def getProfilesByPlayerName(playerName)
     player = getHypixelPlayer(playerName)
     outArr = []
-    player['player']['stats']['SkyBlock']['profiles'].each { |key, val| outArr.push([val['cute_name'], val['profile_id']]) } unless player['player'].nil?
+    player['player']['stats']['SkyBlock']['profiles'].each { |key, val| outArr.push([val['cute_name'], val['profile_id']]) } unless player['player'].nil? || player['player']['stats']['SkyBlock'].nil?
     outArr
 end
 
