@@ -21,8 +21,8 @@
         <![endif]-->
         <div class="navbar">
             <a href="https://sky.elise.moe/">sky.elise.moe</a>
-            <form>
-                <input class="search" placeholder="Username" type="text">
+            <form onsubmit="return searchSubmit()" method="GET">
+                <input class="search" placeholder="Username" type="text" id="searchField" onKeyUp="return searchKeyPressed()" >
                 <input type="submit" style="display: none;"/>
             </form>
         </div>

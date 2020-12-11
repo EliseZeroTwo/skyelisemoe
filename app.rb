@@ -44,20 +44,14 @@ get '/:user' do
     redirect "/stats/#{params['user']}/#{profiles[-1][0]}"
 end
 
-get '/:user/:profile' do
-    redirect "/stats/#{params['user']}/#{params['profile']}"
-end
-
 get '/stats/:user' do
     profiles = getProfilesByPlayerName(params['user'])
     return 'no profiles' if profiles.empty?
     redirect "/stats/#{params['user']}/#{profiles[-1][0]}"
 end
 
-get '/stats/:user/' do
-    profiles = getProfilesByPlayerName(params['user'])
-    return 'no profiles' if profiles.empty?
-    redirect "/stats/#{params['user']}/#{profiles[-1][0]}"
+get '/:user/:profile' do
+    redirect "/stats/#{params['user']}/#{params['profile']}"
 end
 
 get '/stats/:user/:profile' do
