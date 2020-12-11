@@ -39,22 +39,27 @@
                 </div>
             </div>
             <div class="stats-container">
-                <div class="stats-data">
-                    <p><i class="fas fa-heart" style="color: var(--clr-health-strength);"></i><strong style="color: var(--clr-health-strength);">Health</strong>VALUE</p><br>
-                    <p><i class="fas fa-shield-alt" style="color:var(--clr-defense);"></i><strong style="color:var(--clr-defense);">Defense</strong>VALUE</p><br>
-                    <p><i class="fas fa-crosshairs" style="color: var(--clr-health-strength);"></i><strong style="color: var(--clr-health-strength);">Strength</strong>VALUE</p><br>
-                    <p><i class="fas fa-star"></i><strong>Speed</strong>VALUE%</p><br>
-                    <p><i class="fas fa-random" style="color: var(--clr-crit);"></i><strong style="color: var(--clr-crit);">Crit Chance</strong>VALUE%</p><br>
-                    <p><i class="fas fa-bullseye" style="color: var(--clr-crit);"></i><strong style="color: var(--clr-crit);">Crit Damage</strong>VALUE%</p><br>
-                    <p><i class="fas fa-bolt" style="color: var(--clr-atk-speed);"></i><strong style="color: var(--clr-atk-speed);">Attack Speed</strong>VALUE%</p><br>
-                    <p><i class="fas fa-pen" style="color: var(--clr-intel);"></i><strong style="color: var(--clr-intel);">Intelligence</strong>VALUE</p><br>
-                    <p><i class="fas fa-fish" style="color: var(--clr-sc-chance);"></i><strong style="color: var(--clr-sc-chance);">SC Chance</strong>VALUE%</p><br>
-                    <p><i class="fas fa-magic" style="color: var(--clr-magic-find);"></i><strong style="color: var(--clr-magic-find);">Magic Find</strong>VALUE</p><br>
-                    <p><i class="fas fa-spa" style="color: var(--clr-pet-luck);"></i><strong style="color: var(--clr-pet-luck);">Pet Luck</strong>VALUE</p><br>
+                <div class="stats-data flex-centered">
+                    <div class="div-background">
+                        <p><i class="fas fa-heart" style="color: var(--clr-health-strength);"></i><strong style="color: var(--clr-health-strength);">Health</strong>VALUE</p><br>
+                        <p><i class="fas fa-shield-alt" style="color:var(--clr-defense);"></i><strong style="color:var(--clr-defense);">Defense</strong>VALUE</p><br>
+                        <p><i class="fas fa-crosshairs" style="color: var(--clr-health-strength);"></i><strong style="color: var(--clr-health-strength);">Strength</strong>VALUE</p><br>
+                        <p><i class="fas fa-star"></i><strong>Speed</strong>VALUE%</p><br>
+                        <p><i class="fas fa-random" style="color: var(--clr-crit);"></i><strong style="color: var(--clr-crit);">Crit Chance</strong>VALUE%</p><br>
+                        <p><i class="fas fa-bullseye" style="color: var(--clr-crit);"></i><strong style="color: var(--clr-crit);">Crit Damage</strong>VALUE%</p><br>
+                        <p><i class="fas fa-bolt" style="color: var(--clr-atk-speed);"></i><strong style="color: var(--clr-atk-speed);">Attack Speed</strong>VALUE%</p><br>
+                        <p><i class="fas fa-pen" style="color: var(--clr-intel);"></i><strong style="color: var(--clr-intel);">Intelligence</strong>VALUE</p><br>
+                        <p><i class="fas fa-fish" style="color: var(--clr-sc-chance);"></i><strong style="color: var(--clr-sc-chance);">SC Chance</strong>VALUE%</p><br>
+                        <p><i class="fas fa-magic" style="color: var(--clr-magic-find);"></i><strong style="color: var(--clr-magic-find);">Magic Find</strong>VALUE</p><br>
+                        <p><i class="fas fa-spa" style="color: var(--clr-pet-luck);"></i><strong style="color: var(--clr-pet-luck);">Pet Luck</strong>VALUE</p><br>
+                    </div>
+                </div>
+                <div class="stats-skin-render flex-centered ">
+                    <img class="div-background" src="https://crafatar.com/renders/body/<%= @playerUUID %>">
                 </div>
                 <div class="stats-other">
                     <% if @skills.empty? %>
-                        <div class="stats-skills">
+                        <div class="stats-skills div-background">
                             <div class="stats-skills-skill">
                                 <i class="icon-minecraft icon-minecraft-barrier" style="margin-right: 6px;"></i>
                                 <div class="stats-skills-skill-data">
